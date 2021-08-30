@@ -319,7 +319,7 @@ class Decoder_Unet_3(nn.Module):
 
         up_blocks = []
 
-        in_filters=[]
+        in_filters=[None]*num_blocks
 
         for i in range(num_blocks):
             in_filters[i]= block_expansion * (2 ** (i + 1))
