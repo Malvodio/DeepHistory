@@ -30,7 +30,6 @@ def kp2gaussian(kp, spatial_size, kp_variance):
 
     return out
 
-
 def make_coordinate_grid(spatial_size, type):
     """
     Create a meshgrid [-1,1] x [-1,1] of given spatial_size.
@@ -48,7 +47,6 @@ def make_coordinate_grid(spatial_size, type):
     meshed = torch.cat([xx.unsqueeze_(2), yy.unsqueeze_(2)], 2)
 
     return meshed
-
 
 class ResBlock2d(nn.Module):
     """
@@ -74,7 +72,6 @@ class ResBlock2d(nn.Module):
         out += x
         return out
 
-
 class UpBlock2d(nn.Module):
     """
     Upsampling block for use in decoder.
@@ -93,7 +90,6 @@ class UpBlock2d(nn.Module):
         out = self.norm(out)
         out = F.relu(out)
         return out
-
 
 class DownBlock2d(nn.Module):
     """
@@ -614,7 +610,7 @@ class Unet_3_Plus(nn.Module):
         super(Unet_3_Plus, self).__init__()
         self.encoder = Encoder_Unet_3(block_expansion, in_features, num_blocks, max_features)
         self.decoder = Decoder_Unet_3(block_expansion, in_features, num_blocks, max_features)
-        self.out_filters = self.decoder.out_filters
+        #self.out_filters = self.decoder.out_filters
 
     def forward(self, x):
         return self.decoder(self.encoder(x))
