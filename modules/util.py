@@ -535,10 +535,10 @@ class Decoder_Unet_3(nn.Module):
             elif isinstance(m, nn.BatchNorm2d):
                 init_weights(m, init_type='kaiming')
    
-    """
-        self.up_blocks = nn.ModuleList(up_blocks)
-        self.out_filters = block_expansion + in_features
     
+        #self.up_blocks = nn.ModuleList(up_blocks)
+        self.out_filters = block_expansion + in_features
+    """
     def forward(self, x):
         out = x.pop()
         for up_block in self.up_blocks:
@@ -610,7 +610,7 @@ class Unet_3_Plus(nn.Module):
         super(Unet_3_Plus, self).__init__()
         self.encoder = Encoder_Unet_3(block_expansion, in_features, num_blocks, max_features)
         self.decoder = Decoder_Unet_3(block_expansion, in_features, num_blocks, max_features)
-        #self.out_filters = self.decoder.out_filters
+        self.out_filters = self.decoder.out_filters
 
     def forward(self, x):
         return self.decoder(self.encoder(x))
