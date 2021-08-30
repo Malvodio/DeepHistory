@@ -549,22 +549,8 @@ class Decoder_Unet_3(nn.Module):
     """
 
     def forward(self, inputs):
-        ## -------------Encoder-------------
-        h1 = self.conv1(inputs)  # h1->320*320*64
-
-        h2 = self.maxpool1(h1)
-        h2 = self.conv2(h2)  # h2->160*160*128
-
-        h3 = self.maxpool2(h2)
-        h3 = self.conv3(h3)  # h3->80*80*256
-
-        h4 = self.maxpool3(h3)
-        h4 = self.conv4(h4)  # h4->40*40*512
-
-        h5 = self.maxpool4(h4)
-        hd5 = self.conv5(h5)  # h5->20*20*1024
-
-        ## -------------Decoder-------------
+     
+        ## -------------Decoder------------- ##
         h1_PT_hd4 = self.h1_PT_hd4_relu(self.h1_PT_hd4_bn(self.h1_PT_hd4_conv(self.h1_PT_hd4(h1))))
         h2_PT_hd4 = self.h2_PT_hd4_relu(self.h2_PT_hd4_bn(self.h2_PT_hd4_conv(self.h2_PT_hd4(h2))))
         h3_PT_hd4 = self.h3_PT_hd4_relu(self.h3_PT_hd4_bn(self.h3_PT_hd4_conv(self.h3_PT_hd4(h3))))
