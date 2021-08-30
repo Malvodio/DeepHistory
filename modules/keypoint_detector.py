@@ -83,7 +83,7 @@ class KPDetector_Unet_3(nn.Module):
     def __init__(self, block_expansion, num_kp, num_channels, max_features,
                  num_blocks, temperature, estimate_jacobian=False, scale_factor=1,
                  single_jacobian_map=False, pad=0):
-        super(KPDetector, self).__init__()
+        super(KPDetector_Unet_3, self).__init__()
 
         self.predictor = Unet_3_Plus(block_expansion, in_features=num_channels,
                                    max_features=max_features, num_blocks=num_blocks)

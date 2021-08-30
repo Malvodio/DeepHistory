@@ -251,7 +251,7 @@ class DownBlock2d_Unet_3(nn.Module):
     """
 
     def __init__(self, in_features, out_features, kernel_size=3, padding=1, groups=1):
-        super(DownBlock2d, self).__init__()
+        super(DownBlock2d_Unet_3, self).__init__()
         self.conv = nn.Conv2d(in_channels=in_features, out_channels=out_features, kernel_size=kernel_size,
                               padding=padding, groups=groups)
         self.norm = BatchNorm2d(out_features, affine=True)
@@ -270,7 +270,7 @@ class UpBlock2d_Unet_3(nn.Module):
     """
 
     def __init__(self, in_features, out_features, kernel_size=3, padding=1, groups=1):
-        super(UpBlock2d, self).__init__()
+        super(UpBlock2d_Unet_3, self).__init__()
 
         self.conv = nn.Conv2d(in_channels=in_features, out_channels=out_features, kernel_size=kernel_size,
                               padding=padding, groups=groups)
@@ -289,7 +289,7 @@ class Encoder_Unet_3(nn.Module):
     """
 
     def __init__(self, block_expansion, in_features, num_blocks=3, max_features=256):
-        super(Encoder, self).__init__()
+        super(Encoder_Unet_3, self).__init__()
 
         down_blocks = []
         for i in range(num_blocks):
@@ -310,7 +310,7 @@ class Decoder_Unet_3(nn.Module):
     """
 
     def __init__(self, block_expansion, in_features, num_blocks=3, max_features=256):
-        super(Decoder, self).__init__()
+        super(Decoder_Unet_3, self).__init__()
         
         self.CatChannels = 64 #dimensión de los canales
         self.CatBlocks = 5 #número de bloques
@@ -570,7 +570,7 @@ class Unet_3_Plus(nn.Module):
     """
 
     def __init__(self, block_expansion, in_features, num_blocks=3, max_features=256):
-        super(Hourglass, self).__init__()
+        super(Unet_3_Plus, self).__init__()
         self.encoder = Encoder_Unet_3(block_expansion, in_features, num_blocks, max_features)
         self.decoder = Decoder_Unet_3(block_expansion, in_features, num_blocks, max_features)
         self.out_filters = self.decoder.out_filters
