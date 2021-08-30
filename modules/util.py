@@ -346,7 +346,7 @@ class Decoder_Unet_3(nn.Module):
         #self.h4_Cat_hd4_bn = nn.BatchNorm2d(self.CatChannels)
         mid=None
         mid=UpBlock2d_Unet_3(in_filters[3], self.CatChannels, kernel_size=3, padding=1)
-        self.h4_PT_hd4_conv,self.h4_PT_hd4_bn=mid.conv,mid.norm
+        self.h4_Cat_hd4_conv,self.h4_Cat_hd4_bn=mid.conv,mid.norm
         self.h4_Cat_hd4_relu = nn.ReLU(inplace=True)
 
         # hd5->20*20, hd4->40*40, Upsample 2 times
@@ -355,7 +355,7 @@ class Decoder_Unet_3(nn.Module):
         #self.hd5_UT_hd4_conv = nn.Conv2d(in_filters[4], self.CatChannels, 3, padding=1)
         #self.hd5_UT_hd4_bn = nn.BatchNorm2d(self.CatChannels)
         mid=UpBlock2d_Unet_3(in_filters[4], self.CatChannels, kernel_size=3, padding=1)
-        self.h5_PT_hd4_conv,self.h5_PT_hd4_bn=mid.conv,mid.norm
+        self.hd5_UT_hd4_conv,self.hd5_UT_hd4_bn=mid.conv,mid.norm
         self.hd5_UT_hd4_relu = nn.ReLU(inplace=True)
 
         # fusion(h1_PT_hd4, h2_PT_hd4, h3_PT_hd4, h4_Cat_hd4, hd5_UT_hd4)
