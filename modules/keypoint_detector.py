@@ -88,8 +88,8 @@ class KPDetector_Unet_3(nn.Module):
         self.predictor = Unet_3_Plus(block_expansion, in_features=num_channels,
                                    max_features=max_features, num_blocks=num_blocks)
 
-        self.kp = nn.Conv2d(in_channels=1
-                            #in_channels=self.predictor.out_filters
+        self.kp = nn.Conv2d(#in_channels=1
+                            in_channels=self.predictor.out_filters
                             , out_channels=num_kp, kernel_size=(32, 32),
                             padding=pad)
 
