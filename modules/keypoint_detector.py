@@ -90,7 +90,7 @@ class KPDetector_Unet_3(nn.Module):
 
         self.kp = nn.Conv2d(#in_channels=1
                             in_channels=self.predictor.out_filters
-                            , out_channels=num_kp, kernel_size=(32, 32),
+                            , out_channels=num_kp, kernel_size=(7, 7),
                             padding=pad)
 
         if estimate_jacobian:
