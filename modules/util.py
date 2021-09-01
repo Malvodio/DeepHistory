@@ -311,7 +311,7 @@ class Decoder_Unet_3(nn.Module):
         self.CatChannels = in_filters[0] #dimensión de los canales
         self.CatBlocks = 5 #número de bloques
         self.UpChannels = self.CatChannels * self.CatBlocks #número de canales de subida (320, ver el paper)
-        self.n_classes= 1
+        self.n_classes= 35#1
         self.num_blocks = num_blocks
 
         '''stage 4d'''
