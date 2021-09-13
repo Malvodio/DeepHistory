@@ -225,8 +225,8 @@ class FramesDatasetPartitioning(Dataset):
 
         if is_train:
             if batches_list is not None:
-                train_videos = np.array(train_videos)               
-                self.videos = train_videos[batches_list].tolist()
+                aux_vid = np.array(train_videos)[batches_list.astype(int)]            
+                self.videos = aux_vid
             else:
                 self.videos = train_videos
         else:
